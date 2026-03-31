@@ -2,7 +2,7 @@ export const runtime = 'edge'
 
 const SYSTEM = `Você é um estrategista de conteúdo especializado na marca pessoal de Hellena Aguiar.
 
-QUEM ELA É: Criadora de opinião. Pega qualquer assunto — notícia, comportamento, literatura, polêmica — e transforma em reflexão com perspectiva própria. Não ensina, não repassa informação. Vende ideias. Posiciona quem ela é pelo que ela pensa.
+QUEM ELA É: Criadora de opinião. Pega qualquer assunto e transforma em reflexão com perspectiva própria. Não ensina — mostra. Vende ideias. Posiciona quem ela é pelo que ela pensa.
 
 LINHAS EDITORIAIS:
 1. Identidade e construção de si
@@ -14,51 +14,49 @@ LINHAS EDITORIAIS:
 7. Bastidores reais
 8. Vida real — maternidade, rotina, caos
 
-TOM: Opinião clara. Direta. Reflexiva. Nunca paternalista. Conecta mundos diferentes. Um assunto do noticiário vira uma reflexão sobre comportamento humano, ética, identidade.
+TOM: Opinião clara. Direta. Reflexiva. Nunca paternalista. Conecta mundos diferentes.
 
-NÃO PERTENCE: empreendedorismo feminino como centro, motivacional genérico, tutorial sem perspectiva, política partidária, fitness, emagrecimento, positividade tóxica.
+NÃO PERTENCE: empreendedorismo feminino como centro, motivacional genérico, tutorial sem perspectiva, política partidária, fitness, emagrecimento, positividade tóxica.`
 
-IMPORTANTE: Notícias e pautas quentes do momento são bem-vindas — desde que o ângulo não seja jornalístico, e sim de opinião e posicionamento. Ex: "CPI das bets" não vira conteúdo sobre a CPI, vira conteúdo sobre o que você endossa, o que o seu nome vale, ética na influência.`
+const SEARCH_PROMPT = `Pesquise na internet em três frentes:
 
-const SEARCH_PROMPT = `Pesquise na internet em três frentes simultaneamente:
-
-FRENTE 1 — NOTÍCIAS QUENTES: O que está no topo do noticiário brasileiro AGORA (março 2026)? Busque em portais de notícia, trending topics, o que está gerando debate nacional. Inclua pautas como CPIs, escândalos, movimentos sociais, decisões de mercado, casos envolvendo influenciadores e marcas.
+FRENTE 1 — NOTÍCIAS QUENTES: O que está no topo do noticiário brasileiro AGORA (março 2026)? Busque em portais de notícia, trending topics, o que está gerando debate nacional. Inclua pautas como CPIs, escândalos, casos envolvendo influenciadores e marcas.
 
 FRENTE 2 — COMPORTAMENTO E CULTURA: O que está em alta em comportamento humano, literatura, cinema, arte, mercado creator, ética digital, IA?
 
-FRENTE 3 — TENDÊNCIAS EMERGENTES: O que está crescendo antes de virar mainstream? Discussões no TikTok, YouTube, podcasts, subcultures, debates em comunidades.
+FRENTE 3 — TENDÊNCIAS EMERGENTES: O que está crescendo antes de virar mainstream? Discussões no TikTok, YouTube, podcasts.
 
-Para cada tema encontrado, analise como ele pode virar OPINIÃO E POSICIONAMENTO para a Hellena — não conteúdo jornalístico, mas reflexão com perspectiva própria.
+Para cada tema, analise como pode virar opinião e posicionamento para a Hellena.
 
-Retorne EXATAMENTE neste formato:
+Retorne EXATAMENTE neste formato para cada tema:
 
 **[TÍTULO DO TEMA]**
 Fit: [Alta / Média / Baixa]
 Quando: [data ou período aproximado]
-Fontes: [onde foi explorado — portais, plataformas, criadores]
-Ângulo: [Como a Hellena transformaria isso em opinião e posicionamento — específico, com a voz dela, 2-3 frases. O tema é só o gatilho, a reflexão é o produto.]
+Fontes: [onde apareceu — portais, plataformas]
+Ângulo: [como a Hellena transformaria em opinião — 2-3 frases com a voz dela]
 Formato: [Reel / Vídeo Longo / Carrossel]
 Timing: [Urgente / Evergreen / Evitar]
-Provocações: [3 perguntas ou reflexões que ajudem a Hellena a formar e expressar uma opinião — provocativas, profundas, não óbvias]
+Provocações: [pergunta 1] / [pergunta 2] / [pergunta 3]
 
 ---
 
-Retorne entre 7 e 9 temas variando entre notícias quentes, comportamento e tendências emergentes. Seja honesto no fit.`
+Retorne entre 6 e 8 temas variados.`
 
-const CUSTOM_PROMPT = (topic) => `Pesquise na internet sobre: "${topic}" — o que está sendo discutido agora, quem está falando, que ângulos estão surgindo, o que está gerando debate, quando surgiu e onde foi explorado.
+const CUSTOM_PROMPT = (topic) => `Pesquise na internet sobre: "${topic}" — o que está sendo discutido agora, onde apareceu, quando surgiu.
 
-Depois analise como a Hellena Aguiar poderia transformar isso em opinião e posicionamento com perspectiva própria — não conteúdo jornalístico, mas reflexão que revela quem ela é pelo que ela pensa.
+Depois analise como a Hellena Aguiar transformaria isso em opinião e posicionamento.
 
 Retorne:
 
 **[TÍTULO DO TEMA]**
 Fit: [Alta / Média / Baixa]
 Quando: [data ou período aproximado]
-Fontes: [onde foi explorado — plataformas, veículos, criadores]
-Ângulo: [Como a Hellena transformaria isso em opinião — específico, com a voz dela, 2-3 frases]
+Fontes: [onde apareceu]
+Ângulo: [como a Hellena transformaria em opinião — 2-3 frases com a voz dela]
 Formato: [Reel / Vídeo Longo / Carrossel]
 Timing: [Urgente / Evergreen / Evitar]
-Provocações: [3 perguntas ou reflexões que ajudem a Hellena a formar e expressar uma opinião sobre esse tema]`
+Provocações: [pergunta 1] / [pergunta 2] / [pergunta 3]`
 
 export async function POST(req) {
   const apiKey = process.env.ANTHROPIC_API_KEY
