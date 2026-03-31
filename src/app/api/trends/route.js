@@ -1,57 +1,68 @@
 export const runtime = 'edge'
 
-const SYSTEM = `Voce e um estrategista de conteudo especializado na marca pessoal de Hellena Aguiar.
+const SYSTEM = `Você é um estrategista de conteúdo especializado na marca pessoal de Hellena Aguiar.
 
-QUEM ELA E: Criadora de opiniao. Pega qualquer assunto e transforma em reflexao com perspectiva propria. Nao ensina - mostra. Nao repassa informacao - vende ideias. Multipla: estrategista de marketing, criadora de solucoes com IA, coprodutora, mae do Ravi.
+QUEM ELA É: Criadora de opinião. Pega qualquer assunto — notícia, comportamento, literatura, polêmica — e transforma em reflexão com perspectiva própria. Não ensina, não repassa informação. Vende ideias. Posiciona quem ela é pelo que ela pensa.
 
 LINHAS EDITORIAIS:
-1. Identidade e construcao de si - investigacao real, nao autoajuda
-2. Literatura - livros em alta, o que vale a pena, o que um livro ativou nela
-3. Comportamento humano e sociedade - padroes, paradoxos, o que as pessoas fazem e por que
-4. Mercado digital e etica - marcas pagando influenciadores, o que esta errado, o que ninguem fala
-5. IA e tecnologia - perspectiva critica, nao hype
-6. Arte e cinema - o que ela consome e o que isso revela
-7. Bastidores reais - decisoes, erros, making-of sem filtro
-8. Vida real - maternidade, rotina, o que nao cabe no feed perfeito
+1. Identidade e construção de si
+2. Literatura e referências culturais
+3. Comportamento humano e sociedade
+4. Mercado digital, ética e influência
+5. IA e tecnologia com perspectiva crítica
+6. Arte e cinema
+7. Bastidores reais
+8. Vida real — maternidade, rotina, caos
 
-TOM: Opiniao clara. Direto. Reflexivo. Honesto sobre o caos. Nunca paternalista. Conecta mundos diferentes de forma inesperada.
+TOM: Opinião clara. Direta. Reflexiva. Nunca paternalista. Conecta mundos diferentes. Um assunto do noticiário vira uma reflexão sobre comportamento humano, ética, identidade.
 
-NAO PERTENCE A MARCA: empreendedorismo feminino como centro, motivacional generico, tutorial sem perspectiva propria, politica, fitness, emagrecimento, relacionamento romantico, positividade toxica.`
+NÃO PERTENCE: empreendedorismo feminino como centro, motivacional genérico, tutorial sem perspectiva, política partidária, fitness, emagrecimento, positividade tóxica.
 
-const SEARCH_PROMPT = `Pesquise na internet o que esta acontecendo AGORA (marco 2026) no Brasil e no mundo nos seguintes universos:
-- Literatura: livros em alta, lancamentos, discussoes literarias, o que as pessoas estao lendo
-- Comportamento e sociedade: tendencias de comportamento, paradoxos sociais, o que esta incomodando as pessoas
-- Mercado de influencia e etica digital: marcas pagando influenciadores, polêmicas, o que ninguem fala sobre esse mercado
-- Cultura creator: bastidores, o que esta mudando, debates entre criadores
-- IA e tecnologia: o que esta gerando debate, perspectivas criticas, impactos reais
-- Arte e cinema: lancamentos, discussoes culturais relevantes
-- Identidade: conversas sobre proposito, multiplos papeis, quem voce e vs o que voce faz
+IMPORTANTE: Notícias e pautas quentes do momento são bem-vindas — desde que o ângulo não seja jornalístico, e sim de opinião e posicionamento. Ex: "CPI das bets" não vira conteúdo sobre a CPI, vira conteúdo sobre o que você endossa, o que o seu nome vale, ética na influência.`
 
-Para cada tema encontrado, analise se ele se encaixa nas linhas editoriais da Hellena e retorne EXATAMENTE neste formato:
+const SEARCH_PROMPT = `Pesquise na internet em três frentes simultaneamente:
 
-**[TITULO DO TEMA]**
-Fit: [Alta / Media / Baixa]
-Angulo: [Como a Hellena transformaria isso em opiniao propria - especifico, com a voz dela, 2-3 frases. Nunca generico.]
-Formato: [Reel / Video Longo / Carrossel]
+FRENTE 1 — NOTÍCIAS QUENTES: O que está no topo do noticiário brasileiro AGORA (março 2026)? Busque em portais de notícia, trending topics, o que está gerando debate nacional. Inclua pautas como CPIs, escândalos, movimentos sociais, decisões de mercado, casos envolvendo influenciadores e marcas.
+
+FRENTE 2 — COMPORTAMENTO E CULTURA: O que está em alta em comportamento humano, literatura, cinema, arte, mercado creator, ética digital, IA?
+
+FRENTE 3 — TENDÊNCIAS EMERGENTES: O que está crescendo antes de virar mainstream? Discussões no TikTok, YouTube, podcasts, subcultures, debates em comunidades.
+
+Para cada tema encontrado, analise como ele pode virar OPINIÃO E POSICIONAMENTO para a Hellena — não conteúdo jornalístico, mas reflexão com perspectiva própria.
+
+Retorne EXATAMENTE neste formato:
+
+**[TÍTULO DO TEMA]**
+Fit: [Alta / Média / Baixa]
+Quando: [data ou período aproximado]
+Fontes: [onde foi explorado — portais, plataformas, criadores]
+Ângulo: [Como a Hellena transformaria isso em opinião e posicionamento — específico, com a voz dela, 2-3 frases. O tema é só o gatilho, a reflexão é o produto.]
+Formato: [Reel / Vídeo Longo / Carrossel]
 Timing: [Urgente / Evergreen / Evitar]
+Provocações: [3 perguntas ou reflexões que ajudem a Hellena a formar e expressar uma opinião — provocativas, profundas, não óbvias]
 
 ---
 
-Retorne entre 6 e 8 temas de universos variados. Seja honesto no fit.`
+Retorne entre 7 e 9 temas variando entre notícias quentes, comportamento e tendências emergentes. Seja honesto no fit.`
 
-const CUSTOM_PROMPT = (topic) => `Pesquise na internet sobre: "${topic}" - o que esta sendo discutido agora, quem esta falando, que angulos estao surgindo, o que esta gerando debate.
+const CUSTOM_PROMPT = (topic) => `Pesquise na internet sobre: "${topic}" — o que está sendo discutido agora, quem está falando, que ângulos estão surgindo, o que está gerando debate, quando surgiu e onde foi explorado.
 
-Depois analise como a Hellena Aguiar poderia transformar isso em opiniao com perspectiva propria e retorne:
+Depois analise como a Hellena Aguiar poderia transformar isso em opinião e posicionamento com perspectiva própria — não conteúdo jornalístico, mas reflexão que revela quem ela é pelo que ela pensa.
 
-**[TITULO DO TEMA]**
-Fit: [Alta / Media / Baixa]
-Angulo: [Como a Hellena transformaria isso em opiniao - especifico, com a voz dela, 2-3 frases]
-Formato: [Reel / Video Longo / Carrossel]
-Timing: [Urgente / Evergreen / Evitar]`
+Retorne:
+
+**[TÍTULO DO TEMA]**
+Fit: [Alta / Média / Baixa]
+Quando: [data ou período aproximado]
+Fontes: [onde foi explorado — plataformas, veículos, criadores]
+Ângulo: [Como a Hellena transformaria isso em opinião — específico, com a voz dela, 2-3 frases]
+Formato: [Reel / Vídeo Longo / Carrossel]
+Timing: [Urgente / Evergreen / Evitar]
+Provocações: [3 perguntas ou reflexões que ajudem a Hellena a formar e expressar uma opinião sobre esse tema]`
 
 export async function POST(req) {
   const apiKey = process.env.ANTHROPIC_API_KEY
-  if (!apiKey) return Response.json({ error: 'ANTHROPIC_API_KEY nao configurada.' }, { status: 500 })
+  if (!apiKey) return Response.json({ error: 'ANTHROPIC_API_KEY não configurada.' }, { status: 500 })
 
   const { mode, topic } = await req.json()
   const userMsg = mode === 'custom' ? CUSTOM_PROMPT(topic) : SEARCH_PROMPT
